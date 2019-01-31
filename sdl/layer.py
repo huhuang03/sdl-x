@@ -43,7 +43,7 @@ class Relu:
 
 
 class Sigmoid():
-    def __init__self():
+    def __init__(self):
         self.out = None
 
     def forward(self, x):

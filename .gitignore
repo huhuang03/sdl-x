@@ -1,3 +1,5 @@
 .idea/
 sdl.egg-info/
 cache/
+*.pyc
+__pycache__/
