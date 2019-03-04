@@ -8,5 +8,5 @@ setup(
     version='1.0.0',
     description='收集的简单deep learning方法',
     author="th",
-    packages=find_packages(),
+    packages=find_packages(), install_requires=['numpy']
 )

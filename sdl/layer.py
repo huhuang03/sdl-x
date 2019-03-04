@@ -2,7 +2,13 @@ import numpy as np
 from sdl import softmax
 from sdl import cross_entropy_error
 
-class MulLayer:
+
+class Layer:
+    def backward(self, dout):
+        pass
+
+
+class MulLayer(Layer):
     def __init__(self):
         self.x = None
         self.y = None
@@ -13,7 +19,7 @@ class MulLayer:
         return x * y
 
     def backward(self, dout):
-        return dout * y, dout * x
+        return dout * self.y, dout * self.x
 
 
 class AddLayer:
@@ -25,6 +31,7 @@ class AddLayer:
 
     def backward(self, dout):
         return dout
+
 
 class Relu:
     def __init__(self):
@@ -42,7 +49,7 @@ class Relu:
         return rst
 
 
-class Sigmoid():
+class Sigmoid(Layer):
     def __init__(self):
         self.out = None
 
@@ -89,8 +96,9 @@ class SoftmaxWithLoss:
         return self.loss
 
     def backward(self, dout = 1):
+        """dout按理说为实数"""
         batch_size = self.t.shape[0]
-        dx = (self.y - self.t) / batch_size
+        dx = (self.y - self.t) / batch_size * dout
         return dx
 
 

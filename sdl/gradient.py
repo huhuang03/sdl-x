@@ -1,11 +1,10 @@
 # encoding=utf-8
 import numpy as np
 
-# x为一维数组
-def _numerical_gradient1(f, x):
+
+def _numerical_gradient_1d(f, x):
     h = 1e-4
     grad = np.zeros_like(x)
-
     for idx in range(x.size):
         tmp_val = x[idx]
         x[idx] = tmp_val + h
@@ -15,56 +14,24 @@ def _numerical_gradient1(f, x):
         fxh2 = f(x)
         grad[idx] = (fxh1 - fxh2) / (2 * h)
         x[idx] = tmp_val
-
-    return grad
-
-
-# x为二维维数组
-def _numerical_gradient2(f, x):
-    h = 1e-4
-    grad = np.zeros_like(x)
-
-    height, width = grad.shape
-
-    for i in range(height):
-        for j in range(width):
-            tmp_val = x[i, j]
-            x[i, j] = tmp_val + h
-            fxh1 = f(x)
-
-            x[i, j] = tmp_val -h
-            fxh2 = f(x)
-            grad[i, j] = (fxh1 - fxh2) / (2 * h)
-            x[i, j] = tmp_val
-    return grad
-
-
-def book_gradient(f, x):
-    """书上的实现"""
-    h = 1e-4  # 0.0001
-    grad = np.zeros_like(x)
-
-    it = np.nditer(x, flags=['multi_index'], op_flags=['readwrite'])
-    while not it.finished:
-        idx = it.multi_index
-        tmp_val = x[idx]
-        x[idx] = float(tmp_val) + h
-        fxh1 = f(x)  # f(x+h)
-
-        x[idx] = tmp_val - h
-        fxh2 = f(x)  # f(x-h)
-        grad[idx] = (fxh1 - fxh2) / (2 * h)
-
-        x[idx] = tmp_val  # 还原值
-        it.iternext()
-
     return grad
 
 
 def numerical_gradient(f, x):
     if x.ndim == 1:
-        return _numerical_gradient1(f, x)
-    elif x.ndim == 2:
-        return _numerical_gradient2(f, x)
+        return _numerical_gradient_1d(f, x)
     else:
-        raise ValueError("wrong dimen")
+        # 这里使用了单行x去计算f。实际应该是整个x参与计算。
+        grad = np.zeros_like(x)
+        for i in range(x.shape[0]):
+            grad[i] = numerical_gradient(f, x[i])
+        return grad
+
+
+def gradient_decline(f, init_x, learn_gap ,step = 10000):
+    """梯度下降，可能单词用错了"""
+    x = init_x
+    for i in range(step):
+        grad = numerical_gradient(f, x)
+        x = x - grad * learn_gap
+    return f(x)
