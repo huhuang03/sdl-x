@@ -1,4 +1,3 @@
-# encoding=utf-8
 # softmax函数
 import numpy as np
 
@@ -15,6 +14,7 @@ def softmax(x):
     """
     y[k] = exp(e[k]) / Sum(exp[1~n]))
     """
+    # why x.T?
     x = x.T
     x = x - np.max(x, axis=0)
     y = np.exp(x) / np.sum(np.exp(x), axis=0)

@@ -1,4 +1,3 @@
-# encoding=utf-8
 import numpy as np
 # this define some calculate loss function
 
@@ -33,10 +32,10 @@ def cross_entropy_error_label(y, t):
 
 
 # entropy 翻译为熵
-def cross_entropy_error(y, t):
+def cross_entropy_error(y, t, one_shot = True):
     """-Sum(t[k]log(y[k]))
-    方法只处理one-shot的情况"""
-
+    TODO: add some test
+    """
     # 保护log(0)情况
     delta = 1e-7
 
@@ -45,7 +44,9 @@ def cross_entropy_error(y, t):
         y = y.reshape(1, y.size)
         t = t.reshape(1, t.size)
     size = y.shape[0]
-    y_t = y.T
-    t_t = t.T
-    return -np.sum(t_t * np.log(y_t + delta)) / size
-
+    y = y.T
+    t = t.T
+    if one_shot:
+        return -np.sum(t * np.log(y + delta)) / size
+    else:
+        return -np.sum(np.log(y[np.arange(size), t] + delta)) / size

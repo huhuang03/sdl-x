@@ -1,4 +1,3 @@
-# coding: utf-8
 import numpy as np
 from sdl import softmax
 from sdl import cross_entropy_error

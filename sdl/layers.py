@@ -1,4 +1,3 @@
-# encoding: utf-8
 import numpy as np
 from sdl import sigmoid, softmax, cross_entropy_error
 
