@@ -1,12 +1,12 @@
 import numpy as np
-from sdl import softmax
-from sdl import cross_entropy_error
-from sdl import numerical_gradient
-from sdl.layers import Affine
-from sdl.layers import Relu
-from sdl.layers import SoftmaxWithLoss
+from sdl_x import softmax
+from sdl_x import cross_entropy_error
+from sdl_x import numerical_gradient
+from sdl_x.layers import Affine
+from sdl_x.layers import Relu
+from sdl_x.layers import SoftmaxWithLoss
 from collections import OrderedDict
-from sdl import active
+from sdl_x import active
 
 
 class SimpleNet:

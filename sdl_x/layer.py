@@ -1,6 +1,6 @@
 import numpy as np
-from sdl import softmax
-from sdl import cross_entropy_error
+from sdl_x import softmax
+from sdl_x import cross_entropy_error
 
 
 class Layer:
