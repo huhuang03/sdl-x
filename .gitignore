@@ -6,3 +6,5 @@ __pycache__/
 sample_weight.pkl
 
 build/
+*.egg-info/
+dist/
