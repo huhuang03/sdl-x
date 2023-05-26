@@ -1,16 +1,14 @@
 import numpy as np
 from sdl_x import sigmoid, softmax, cross_entropy_error
-from abc import ABC, abstractmethod
 
-class ICommonLayer(ABC):
-    @abstractmethod
-    def forward(self, x: np.ndarray) -> np.ndarray:
-        pass
+from .layer.layer import ICommonLayer
+
 
 class Relu(ICommonLayer):
     """
     y = if (x > 0) x else 0
     """
+
     def __init__(self):
         self.mask = None
 
@@ -42,9 +40,9 @@ class Sigmoid(ICommonLayer):
 
 class Affine(ICommonLayer):
     def __init__(self, W, b):
-        self.W =W
+        self.W = W
         self.b = b
-        
+
         self.x = None
         self.original_x_shape = None
         # 权重和偏置参数的导数
@@ -69,10 +67,11 @@ class SoftmaxWithLoss:
     """
     softmax with a cross_entropy_error
     """
+
     def __init__(self):
         self.loss = None
-        self.y = None # softmax的输出
-        self.t = None # 监督数据
+        self.y = None  # softmax的输出
+        self.t = None  # 监督数据
 
     def forward(self, x, t):
         self.t = t
@@ -83,7 +82,7 @@ class SoftmaxWithLoss:
 
     def backward(self, dout=1):
         batch_size = self.t.shape[0]
-        if self.t.size == self.y.size: # 监督数据是one-hot-vector的情况
+        if self.t.size == self.y.size:  # 监督数据是one-hot-vector的情况
             dx = (self.y - self.t) / batch_size
         else:
             dx = self.y.copy()

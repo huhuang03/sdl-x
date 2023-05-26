@@ -32,7 +32,7 @@ def cross_entropy_error_label(y, t):
 
 
 # entropy 翻译为熵
-def cross_entropy_error(y, t, one_shot = True):
+def cross_entropy_error(y, t, one_shot=True):
     """-Sum(t[k]log(y[k]))
     TODO: add some test
     """
