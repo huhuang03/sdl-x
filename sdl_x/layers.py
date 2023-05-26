@@ -1,15 +1,20 @@
 import numpy as np
 from sdl_x import sigmoid, softmax, cross_entropy_error
+from abc import ABC, abstractmethod
 
+class ICommonLayer(ABC):
+    @abstractmethod
+    def forward(self, x: np.ndarray) -> np.ndarray:
+        pass
 
-class Relu:
+class Relu(ICommonLayer):
     """
     y = if (x > 0) x else 0
     """
     def __init__(self):
         self.mask = None
 
-    def forward(self, x):
+    def forward(self, x: np.ndarray) -> np.ndarray:
         self.mask = (x <= 0)
         out = x.copy()
         out[self.mask] = 0
@@ -22,21 +27,20 @@ class Relu:
         return dx
 
 
-class Sigmoid:
+class Sigmoid(ICommonLayer):
     def __init__(self):
         self.out = None
 
-    def forward(self, x):
+    def forward(self, x: np.ndarray) -> np.ndarray:
         self.out = sigmoid(x)
         return self.out
 
     def backward(self, dout):
         dx = dout * (1.0 - self.out) * self.out
-
         return dx
 
 
-class Affine:
+class Affine(ICommonLayer):
     def __init__(self, W, b):
         self.W =W
         self.b = b
@@ -47,7 +51,7 @@ class Affine:
         self.dW = None
         self.db = None
 
-    def forward(self, x):
+    def forward(self, x: np.ndarray) -> np.ndarray:
         # 对应张量
         self.x = x
         out = np.dot(self.x, self.W) + self.b
@@ -62,6 +66,9 @@ class Affine:
 
 
 class SoftmaxWithLoss:
+    """
+    softmax with a cross_entropy_error
+    """
     def __init__(self):
         self.loss = None
         self.y = None # softmax的输出
@@ -82,6 +89,4 @@ class SoftmaxWithLoss:
             dx = self.y.copy()
             dx[np.arange(batch_size), self.t] -= 1
             dx = dx / batch_size
-
         return dx
-

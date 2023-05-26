@@ -30,7 +30,7 @@ class AddLayer:
         return x + y
 
     def backward(self, dout):
-        return dout
+        return dout, dout
 
 
 class Relu:
