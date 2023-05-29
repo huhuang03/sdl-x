@@ -12,4 +12,3 @@ class SoftMax(ICommonLayer):
 
     def backward(self, dout: np.ndarray) -> np.ndarray:
         pass
-

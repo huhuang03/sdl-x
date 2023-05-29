@@ -53,7 +53,6 @@ class Affine(ICommonLayer):
         # 对应张量
         self.x = x
         out = np.dot(self.x, self.W) + self.b
-
         return out
 
     def backward(self, dout):
