@@ -14,3 +14,13 @@ from sdl_x.mnist import load_mnist
 from sdl_x.layers import Affine
 from sdl_x.layers import Relu
 from sdl_x.layers import SoftmaxWithLoss
+
+import numpy as np
+
+
+def mean(src: np.ndarray, axis=None) -> np.ndarray:
+    """
+    求均值
+    """
+    if axis is None:
+        axis = src
