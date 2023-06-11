@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='sdl-x',
-    version='0.0.1',
+    version='0.0.2',
     description='collected simple deep learning functions',
     author="huhuang03",
     packages=['sdl_x'],
