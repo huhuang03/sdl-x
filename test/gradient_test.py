@@ -23,6 +23,7 @@ class GradientTest(unittest.TestCase):
         manually_dw = numerical_gradient(loss, w)
         math_dw = x.T @ numpy.ones((1, 10))
         assert_same(manually_dw, math_dw)
+        print('here!!')
 
     # def test_gradient_decline(self):
     #     y =  gradient_decline(x2_plus_x2, np.array([5, 8]), 0.01)
