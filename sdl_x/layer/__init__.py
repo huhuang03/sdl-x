@@ -1,1 +1,1 @@
-from layer import ICommonLayer, ILossLayer
+from .layer import ICommonLayer, ILossLayer
