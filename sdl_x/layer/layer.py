@@ -11,6 +11,7 @@ class ICommonLayer(ABC):
     def backward(self, dout: np.ndarray) -> np.ndarray:
         pass
 
+
 class ILossLayer(ABC):
     def __init__(self):
         self.t = None

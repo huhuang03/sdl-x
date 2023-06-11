@@ -1,5 +1,5 @@
 import numpy as np
-# this define some calculate loss function
+# this defines some calculate loss function
 
 
 # 均方误差
@@ -32,21 +32,15 @@ def cross_entropy_error_label(y, t):
 
 
 # entropy 翻译为熵
-def cross_entropy_error(y, t, one_shot=True):
+def cross_entropy_error(y, t, one_hot_label=True):
     """-Sum(t[k]log(y[k]))
     why you so complex
     """
     # 保护log(0)情况
     delta = 1e-7
 
-    # 处理size
-    if y.ndim == 1:
-        y = y.reshape(1, y.size)
-        t = t.reshape(1, t.size)
     size = y.shape[0]
-    y = y.T
-    t = t.T
-    if one_shot:
-        return -np.sum(t * np.log(y + delta)) / size
+    if one_hot_label:
+        return -np.sum(np.log(y + delta) * t) / size
     else:
         return -np.sum(np.log(y[np.arange(size), t] + delta)) / size

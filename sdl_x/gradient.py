@@ -1,43 +1,22 @@
 import numpy as np
 
 
-# def _numerical_gradient_1d(f, x):
-#     h = 1e-4
-#     grad = np.zeros_like(x)
-#     for idx in range(x.size):
-#         tmp_val = x[idx]
-#         x[idx] = tmp_val + h
-#         fxh1 = f(x)
-#
-#         x[idx] = tmp_val - h
-#         fxh2 = f(x)
-#         # print(f"fxh1: {fxh1}, h2: {fxh2}")
-#         # input("pause")
-#         # how can I pause
-#         grad[idx] = (fxh1 - fxh2) / (2 * h)
-#         x[idx] = tmp_val
-#     return grad
-
-
 def numerical_gradient(f, x: np.ndarray):
     """
     calc gradient
     for now, only support ndim 2
     """
-    if x.ndim != 2:
-        raise ValueError("for now, only support ndim 2")
     h = 1e-4
     grad = np.zeros_like(x)
-    for r in range(0, x.shape[0]):
-        for c in range(x.shape[1]):
-            tmp_val = x[r][c]
-            x[r][c] = tmp_val + h
-            fxh1 = f(x)
+    for i in range(x.size):
+        tmp_val = x.flat[i]
+        x.flat[i] = tmp_val + h
+        fxh1 = f(x)
 
-            x[r][c] = tmp_val - h
-            fxh2 = f(x)
-            grad[r][c] = (fxh1 - fxh2) / (2 * h)
-            x[r][c] = tmp_val
+        x.flat[i] = tmp_val - h
+        fxh2 = f(x)
+        grad.flat[i] = (fxh1 - fxh2) / (2 * h)
+        x.flat[i] = tmp_val
     return grad
 
 

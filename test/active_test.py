@@ -1,13 +1,13 @@
 import unittest
 import numpy as np
-from sdl.active import sigmoid
-from sdl.active import softmax
+from sdl_x.active import sigmoid
+from sdl_x.active import softmax
 
 
 class ActiveTest(unittest.TestCase):
 
     def test_sigmoid(self):
-        a = np.array([0])
+        a = np.array([[0]])
         self.assertTrue(sigmoid(a) == np.array([1/2]))
         a = np.array([[0], [0]])
         self.assertTrue(a.shape == (2, 1))

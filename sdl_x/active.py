@@ -14,8 +14,9 @@ def softmax(x):
     """
     y[k] = exp(e[k]) / Sum(exp[1~n]))
     """
-    # why x.T?
+    # 换成转置，省的处理(3,)这种shape
     x = x.T
-    x = x - np.max(x, axis=0)
-    y = np.exp(x) / np.sum(np.exp(x), axis=0)
+    x = x - x.max(axis=0)
+    exp = np.exp(x)
+    y = exp / exp.sum(axis=0)
     return y.T
