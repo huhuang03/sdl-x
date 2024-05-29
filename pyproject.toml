@@ -1,0 +1,10 @@
+[build-system]
+requires = ['hatchling']
+build-backend = 'hatchling.build'
+
+[project]
+name = 'sdl-x'
+version = '0.0.2'
+description = 'collected simple deep learning functions'
+authors = [{name = 'huhuang03'}]
+dependencies = ['numpy']
