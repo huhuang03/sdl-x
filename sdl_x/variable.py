@@ -95,17 +95,16 @@ class Variable:
             func = funcs.pop()
             inputs = func.inputs
             outputs = func.outputs
-            input_grads = func.backward(*[i.grad for i in outputs])
-            if not isinstance(input_grads, tuple):
-                input_grads = (input_grads,)
-            for input_, grad in zip(inputs, input_grads):
-                # 这里我觉得，应该只能是 + 或者x
-                if input_.grad is not None:
-                    input_.grad = grad + input_.grad
+            gxs = func.backward(*[i.grad for i in outputs])
+            if not isinstance(gxs, tuple):
+                gxs = (gxs,)
+            for x, gx in zip(inputs, gxs):
+                if x.grad is not None:
+                    x.grad = gx + x.grad
                 else:
-                    input_.grad = grad
-                if input_.creator:
-                    add_func(input_.creator)
+                    x.grad = gx
+                if x.creator:
+                    add_func(x.creator)
 
 
 def as_variable(val):
