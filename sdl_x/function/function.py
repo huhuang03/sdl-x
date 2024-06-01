@@ -1,8 +1,8 @@
 from typing import List, Union
 from abc import ABC, abstractmethod
-from .variable import Variable, as_variable
-from .config import Config
-from .util import as_array
+from sdl_x.variable import Variable, as_variable
+from sdl_x.config import Config
+from sdl_x.util import as_array
 
 
 class Function(ABC):

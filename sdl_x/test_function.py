@@ -5,6 +5,7 @@ from sdl_x.square import Square
 from sdl_x.variable import Variable
 
 
+# noinspection DuplicatedCode
 def test_backward():
     A = Square()
     B = Exp()
@@ -15,10 +16,10 @@ def test_backward():
     b = B(a)
     y = C(b)
 
-    y.grad = np.array(1.0)
-    b.grad = C.backward(y.grad)
-    a.grad = B.backward(b.grad)
-    x.grad = A.backward(a.grad)
+    y.grad = Variable(np.array(1.0))
+    b.grad = C.backward(y.grad.data)
+    a.grad = B.backward(b.grad.data)
+    x.grad = A.backward(a.grad.data)
     # 手动计算大概是 3.2974425
-    assert abs(x.grad - 3.2974425) < 1e-4
+    assert abs(x.grad.data - 3.2974425) < 1e-4
 

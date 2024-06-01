@@ -19,7 +19,7 @@ def test_backward():
     y.grad = np.array(1.0)
     y.backward()
     # 手动计算大概是 3.2974425
-    assert np.allclose(x.grad, 3.2974425)
+    assert np.allclose(x.grad.data, 3.2974425)
 
 
 def test_operation():

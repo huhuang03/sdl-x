@@ -1,5 +1,5 @@
 import math
-from .function import Function
+from .function.function import Function
 import numpy as np
 
 

@@ -1,5 +1,5 @@
 from .function import Function
-from .util import as_array
+from sdl_x.util import as_array
 
 
 class Sub(Function):

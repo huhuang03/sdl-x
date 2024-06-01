@@ -16,11 +16,12 @@ from .layer import SoftmaxWithLoss
 
 import numpy as np
 
-from .mul import mul
+from sdl_x.function.mul import mul
 from .variable import Variable
-from .add import add
-from .pow import pow_
-from .sub import sub, rsub
+from sdl_x.function.add import add
+from sdl_x.function.pow import pow_
+from sdl_x.function.sub import sub, rsub
+from sdl_x.function.neg import neg
 
 Variable.__mul__ = mul
 Variable.__rmul__ = mul
@@ -29,11 +30,4 @@ Variable.__radd__ = add
 Variable.__pow__ = pow_
 Variable.__sub__ = sub
 Variable.__rsub__ = rsub
-
-
-def mean(src: np.ndarray, axis=None) -> np.ndarray:
-    """
-    求均值
-    """
-    if axis is None:
-        axis = src
+Variable.__neg__ = neg

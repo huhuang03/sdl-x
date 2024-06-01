@@ -3,7 +3,7 @@ from typing import Optional, TYPE_CHECKING
 import numpy as np
 
 if TYPE_CHECKING:
-    from sdl_x.function import Function
+    from sdl_x.function.function import Function
 
 
 def _check_data(data):
@@ -17,7 +17,8 @@ class Variable:
 
     def __init__(self, data: np.ndarray, name=None):
         _check_data(data)
-        self.data = data
+        # is this always np.ndarray??
+        self.data: np.ndarray = data
         self.grad: Optional[Variable] = None
         self.name = name
         self.creator: Optional['Function'] = None
@@ -64,6 +65,9 @@ class Variable:
 
     def __len__(self):
         return len(self.data)
+
+    def __neg__(self):
+        raise NotImplementedError()
 
     @property
     def dtype(self):
