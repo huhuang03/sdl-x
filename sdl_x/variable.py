@@ -80,7 +80,10 @@ class Variable:
         self.creator = func
         self.generation = func.generation
 
-    def backward(self):
+    def backward(self, create_graphic=False):
+        """
+        is created back graphic
+        """
         if self.grad is None:
             self.grad = Variable(np.ones_like(self.data))
         funcs = []
@@ -95,12 +98,13 @@ class Variable:
             func = funcs.pop()
             inputs = func.inputs
             outputs = func.outputs
-            gxs = func.backward(*[i.grad for i in outputs])
+            gys = [i.grad for i in outputs]
+            gxs = func.backward(*gys)
             if not isinstance(gxs, tuple):
                 gxs = (gxs,)
             for x, gx in zip(inputs, gxs):
                 if x.grad is not None:
-                    x.grad = gx + x.grad
+                    x.grad = x.grad + gx
                 else:
                     x.grad = gx
                 if x.creator:

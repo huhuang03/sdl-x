@@ -35,5 +35,3 @@ def test_operation():
     assert c.data == 20
     c = 20 * a
     assert c.data == 20
-
-

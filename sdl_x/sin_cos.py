@@ -10,11 +10,25 @@ class Sin(Function):
 
     def backward(self, gy):
         x = self.inputs[0]
-        return gy * np.cos(x)
+        return gy * Cos()(x)
 
 
 def sin(x):
     return Sin()(x)
+
+
+class Cos(Function):
+    def forward(self, x):
+        y = np.cos(x)
+        return y
+
+    def backward(self, gy: np.ndarray):
+        x = self.inputs[0]
+        return gy * Sin()(x)
+
+
+def cos(x):
+    return Cos()(x)
 
 
 def my_sin(x, threshold=0.0001):
