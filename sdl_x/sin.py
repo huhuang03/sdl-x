@@ -9,7 +9,7 @@ class Sin(Function):
         return y
 
     def backward(self, gy):
-        x = self.inputs[0].data
+        x = self.inputs[0]
         return gy * np.cos(x)
 
 

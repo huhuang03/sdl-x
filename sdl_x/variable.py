@@ -18,8 +18,7 @@ class Variable:
     def __init__(self, data: np.ndarray, name=None):
         _check_data(data)
         self.data = data
-        # 现在的理解，grad只是用来记录一下梯度
-        self.grad = None
+        self.grad: Optional[Variable] = None
         self.name = name
         self.creator: Optional['Function'] = None
         self.generation = 0
@@ -79,7 +78,7 @@ class Variable:
 
     def backward(self):
         if self.grad is None:
-            self.grad = np.ones_like(self.data)
+            self.grad = Variable(np.ones_like(self.data))
         funcs = []
 
         def add_func(_func: 'Function'):

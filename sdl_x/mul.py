@@ -8,7 +8,8 @@ class Mul(Function):
         return x0 * x1
 
     def backward(self, gy):
-        return self.inputs[1].data * gy, self.inputs[0].data * gy
+        x0, x1 = self.inputs
+        return x1 * gy, x0 * gy
 
 
 def mul(x0, x1):
