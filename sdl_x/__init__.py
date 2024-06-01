@@ -16,6 +16,20 @@ from .layer import SoftmaxWithLoss
 
 import numpy as np
 
+from .mul import mul
+from .variable import Variable
+from .add import add
+from .pow import pow_
+from .sub import sub, rsub
+
+Variable.__mul__ = mul
+Variable.__rmul__ = mul
+Variable.__add__ = add
+Variable.__radd__ = add
+Variable.__pow__ = pow_
+Variable.__sub__ = sub
+Variable.__rsub__ = rsub
+
 
 def mean(src: np.ndarray, axis=None) -> np.ndarray:
     """

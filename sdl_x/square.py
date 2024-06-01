@@ -2,8 +2,12 @@ from .function import Function
 
 
 class Square(Function):
-    def forward(self, x):
+    def forward(self, x: float):
         return x ** 2
 
     def backward(self, gy):
-        return self.input_.data * 2 * gy
+        return self.inputs[0].data * 2 * gy
+
+
+def square(x):
+    return Square()(x)

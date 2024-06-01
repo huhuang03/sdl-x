@@ -19,5 +19,19 @@ def test_backward():
     y.grad = np.array(1.0)
     y.backward()
     # 手动计算大概是 3.2974425
-    assert abs(x.grad - 3.2974425) < 1e-4
+    assert np.allclose(x.grad, 3.2974425)
 
+
+def test_operation():
+    a = Variable(np.array(1))
+    # Variable + np.array and vise
+    b = a + np.array(20)
+    assert b.data == 21
+    b = np.array(20) + a
+    assert b.data == 21
+
+    # Variable + number and vise
+    c = a * 20
+    assert c.data == 20
+    c = 20 * a
+    assert c.data == 20
