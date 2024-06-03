@@ -27,19 +27,18 @@ def test_grad_twice():
     y.backward()
     assert np.allclose(x.grad.data, 24)
 
-    y.grad.name = 'dy'
-    x.grad.name = 'dx'
+    y.grad.name = 'gy'
+    x.grad.name = 'gx'
     plot_dot_graph(x.grad, to_file='tmp_1.png')
 
     gx = x.grad
     x.clear_grad()
-    gx.backward()
-    print(x.grad)
+    print('gx: ', gx)
 
-    # y.grad.name = 'gy'
-    # gx = x.grad
-    # # x.clear_grad()
-    # # gx.backward()
-    # gx.name = 'gx'
-    # plot_dot_graph(gx, to_file='tmp_1.png')
-    # print('x.grad: ', x.grad)
+    gx.backward()
+    assert np.allclose(x.grad.data, 44)
+
+    # plt
+    x.name = 'x'
+    x.grad.name = "f''(x)"
+    plot_dot_graph(x.grad, to_file='tmp_2.png')

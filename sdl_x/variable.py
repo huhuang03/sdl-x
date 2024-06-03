@@ -24,6 +24,12 @@ class Variable:
         self.creator: Optional['Function'] = None
         self.generation = 0
 
+    def real_sum(self, axios, keepdims):
+        raise NotImplementedError('Variable.sum() not implemented')
+
+    def sum(self, axios=None, keepdims=False):
+        self.sum(axios, keepdims)
+
     def __pow__(self, power, modulo=None):
         raise NotImplementedError()
 
@@ -57,6 +63,13 @@ class Variable:
     def size(self):
         return self.data.size
 
+    def transpose(self):
+        raise NotImplementedError()
+
+    @property
+    def T(self):
+        return self.transpose()
+
     def __repr__(self):
         if self.data is None:
             return 'variable(None)'
@@ -69,6 +82,17 @@ class Variable:
     def __neg__(self):
         raise NotImplementedError()
 
+    def real_reshape(self, shape):
+        raise NotImplementedError()
+
+    def reshape(self, *shape):
+        """
+        how to hande recycle import?
+        """
+        if len(shape) == 1 and isinstance(shape[0], (tuple, list)):
+            shape = shape[0]
+        return self.real_reshape(shape)
+
     @property
     def dtype(self):
         return self.data.dtype
@@ -80,7 +104,7 @@ class Variable:
         self.creator = func
         self.generation = func.generation
 
-    def backward(self, create_graphic=False):
+    def backward(self):
         """
         is created back graphic
         """
@@ -111,7 +135,7 @@ class Variable:
                     add_func(x.creator)
 
 
-def as_variable(val):
+def as_variable(val: Variable | np.ndarray):
     if isinstance(val, Variable):
         return val
     return Variable(val)

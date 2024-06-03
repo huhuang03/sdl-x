@@ -2,7 +2,7 @@
 import numpy as np
 from sdl_x import softmax
 
-from .layer import ICommonLayer
+from .old_layer import ICommonLayer
 
 
 class SoftMax(ICommonLayer):

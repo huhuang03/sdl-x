@@ -1,7 +1,7 @@
 import numpy as np
 from sdl_x import cross_entropy_error
 
-from .layer import ILossLayer
+from .old_layer import ILossLayer
 
 
 # noinspection PyPep8Naming

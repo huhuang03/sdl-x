@@ -1,4 +1,4 @@
-from .layer import ICommonLayer, ILossLayer
+from .old_layer import ICommonLayer, ILossLayer
 import numpy as np
 from sdl_x import sigmoid, softmax, cross_entropy_error
 

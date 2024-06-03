@@ -2,9 +2,9 @@ import numpy as np
 from sdl_x import softmax
 from sdl_x import cross_entropy_error
 from sdl_x import numerical_gradient
-from .layer import Affine
-from .layer import Relu
-from .layer import SoftmaxWithLoss
+from sdl_x.v1.layer import Affine
+from sdl_x.v1.layer import Relu
+from sdl_x.v1.layer import SoftmaxWithLoss
 from collections import OrderedDict
 from sdl_x import active
 
