@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from sdl_x.lose import cross_entropy_error
+from src.sdl_x import cross_entropy_error
 
 
 class ActiveTest(unittest.TestCase):

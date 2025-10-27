@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
-from sdl_x.active import sigmoid
-from sdl_x.active import softmax
+from src.sdl_x import sigmoid
+from src.sdl_x import softmax
 
 
 class ActiveTest(unittest.TestCase):

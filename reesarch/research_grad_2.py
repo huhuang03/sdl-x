@@ -1,8 +1,8 @@
 import numpy as np
 
-from sdl_x.variable import Variable
-from sdl_x.sin_cos import sin
-from sdl_x.util_dot_graph import plot_dot_graph
+from src.sdl_x import Variable
+from src.sdl_x import sin
+from src.sdl_x import plot_dot_graph
 
 
 x = Variable(np.array(0), name='x')

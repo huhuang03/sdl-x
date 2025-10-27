@@ -1,4 +1,4 @@
-from sdl_x.v1.layer.loss import CrossEntropyError
+from src.sdl_x import CrossEntropyError
 import numpy as np
 
 

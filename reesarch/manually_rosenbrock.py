@@ -1,5 +1,5 @@
 # 28.2 手动求导
-from sdl_x.variable import Variable
+from src.sdl_x import Variable
 import numpy as np
 
 

@@ -11,3 +11,4 @@ dist/
 tmp_*.png
 graph.png
 /*.png
+model.png
