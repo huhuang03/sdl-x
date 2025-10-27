@@ -9,7 +9,6 @@ class Square(Function):
         return x ** 2
 
     def backward(self, gy: np.ndarray) -> np.ndarray:
-        print('self.inputs.data: ', self.inputs.data, type(self.inputs.data))
         return self.inputs.data * 2 * gy
 
 
