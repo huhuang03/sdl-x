@@ -1,6 +1,6 @@
 import numpy as np
 
-from src.sdl_x.function.function import Function
+from sdl_x.function.function import Function
 
 
 class Ln(Function):

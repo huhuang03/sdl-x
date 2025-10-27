@@ -1,5 +1,5 @@
-from src.sdl_x.layer.liner import Liner
-from src.sdl_x.model.model import Model
+from sdl_x.layer.liner import Liner
+from sdl_x.model.model import Model
 
 
 class TwoLayerNet(Model):

@@ -1,8 +1,8 @@
 import numpy as np
 
-from src.sdl_x.exp import Exp
-from src.sdl_x.square import Square
-from src.sdl_x.variable import Variable
+from sdl_x.exp import Exp
+from sdl_x.square import Square
+from sdl_x.variable import Variable
 
 
 # noinspection DuplicatedCode

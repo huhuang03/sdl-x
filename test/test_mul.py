@@ -1,5 +1,5 @@
 import numpy as np
-from src.sdl_x.variable import Variable
+from sdl_x.variable import Variable
 
 
 def test_mul():

@@ -1,7 +1,7 @@
 import numpy as np
 
-from src.sdl_x import Square
-from src.sdl_x import Variable
+from sdl_x import Square
+from sdl_x import Variable
 
 
 def test_square():

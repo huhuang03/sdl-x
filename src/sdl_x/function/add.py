@@ -1,7 +1,7 @@
 import numpy as np
 
 from .function import Function
-from src.sdl_x.util import as_array
+from sdl_x.util import as_array
 from .sum_and_brodcast_to import sum_to
 
 

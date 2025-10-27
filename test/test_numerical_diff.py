@@ -1,8 +1,8 @@
 import numpy as np
 
-from src.sdl_x.numerical_diff import numerical_diff
-from src.sdl_x.square import Square
-from src.sdl_x.variable import Variable
+from sdl_x.numerical_diff import numerical_diff
+from sdl_x.square import Square
+from sdl_x.variable import Variable
 
 
 def test_numerical_diff():

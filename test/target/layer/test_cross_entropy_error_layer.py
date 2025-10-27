@@ -1,4 +1,4 @@
-from src.sdl_x import CrossEntropyError
+from sdl_x import CrossEntropyError
 import numpy as np
 
 

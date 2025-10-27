@@ -1,6 +1,6 @@
 from .old_layer import ICommonLayer, ILossLayer
 import numpy as np
-from src.sdl_x import sigmoid, softmax, cross_entropy_error
+from sdl_x import sigmoid, softmax, cross_entropy_error
 
 
 class Relu(ICommonLayer):

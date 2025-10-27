@@ -3,7 +3,7 @@ from typing import Optional, TYPE_CHECKING
 import numpy as np
 
 if TYPE_CHECKING:
-    from src.sdl_x.function.function import Function
+    from .function.function import Function
 
 
 def _check_data(data):
@@ -17,10 +17,10 @@ class Variable:
 
     def __init__(self, data: np.ndarray, name=None):
         _check_data(data)
-        # is this always np.ndarray??
         self.data: np.ndarray = data
-        self.grad: Optional[Variable] = None
+        self.grad: Optional[np.ndarray] = None
         self.name = name
+        # the function that create this variable
         self.creator: Optional['Function'] = None
         self.generation = 0
 
@@ -105,34 +105,16 @@ class Variable:
         self.generation = func.generation
 
     def backward(self):
+        if self.grad is None:
+            self.grad = np.ones_like(self.data)
         """
         is created back graphic
         """
-        if self.grad is None:
-            self.grad = Variable(np.ones_like(self.data))
-        funcs = []
-
-        def add_func(_func: 'Function'):
-            funcs.append(_func)
-            funcs.sort(key=lambda it: it.generation)
-
-        add_func(self.creator)
-
-        while funcs:
-            func = funcs.pop()
-            inputs = func.inputs
-            outputs = func.outputs
-            gys = [i.grad for i in outputs]
-            gxs = func.backward(*gys)
-            if not isinstance(gxs, tuple):
-                gxs = (gxs,)
-            for x, gx in zip(inputs, gxs):
-                if x.grad is not None:
-                    x.grad = x.grad + gx
-                else:
-                    x.grad = gx
-                if x.creator:
-                    add_func(x.creator)
+        f = self.creator
+        if f is not None:
+            x_variable = f.inputs
+            x_variable.grad = f.backward(self.grad)
+            x_variable.backward()
 
 
 def as_variable(val: Variable | np.ndarray):

@@ -1,10 +1,14 @@
+import numpy as np
+
 from .function import Function
-from src.sdl_x.util import as_array
+from sdl_x.util import as_array
+from ..variable import Variable
 
 
 class Mul(Function):
 
-    def forward(self, x0, x1):
+    def forward(self, x: np.ndarray) -> np.ndarray:
+        x0, x1 = x[0], x[1]
         return x0 * x1
 
     def backward(self, gy):
@@ -13,4 +17,4 @@ class Mul(Function):
 
 
 def mul(x0, x1):
-    return Mul()(x0, as_array(x1))
+    return Mul()(Variable(np.ndarray([x0, x1])))

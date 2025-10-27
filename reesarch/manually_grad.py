@@ -1,5 +1,5 @@
 # 33.2 手动求导，但是二阶
-from src.sdl_x import Variable
+from sdl_x import Variable
 import numpy as np
 
 

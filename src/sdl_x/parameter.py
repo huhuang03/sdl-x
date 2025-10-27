@@ -1,4 +1,4 @@
-from src.sdl_x.variable import Variable
+from sdl_x.variable import Variable
 
 
 class Parameter(Variable):

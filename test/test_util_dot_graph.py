@@ -1,6 +1,6 @@
-from src.sdl_x.util_dot_graph import _dot_var
-from src.sdl_x.variable import Variable
-from src.sdl_x.util_dot_graph import plot_dot_graph
+from sdl_x.util_dot_graph import _dot_var
+from sdl_x.variable import Variable
+from sdl_x.util_dot_graph import plot_dot_graph
 import numpy as np
 
 
@@ -19,4 +19,4 @@ def test_plot_graph():
          (30 + (2*x - 3*y)**2 * (18 - 32*x + 12*x**2 + 48*y - 36*x*y + 27*y**2)))
     x.name = 'x'
     y.name = 'y'
-    plot_dot_graph(z, verbose=False, to_file='tmp_goldstein.png')
+    plot_dot_graph(z, verbose=False, to_file='../src/sdl_x/tmp_goldstein.png')

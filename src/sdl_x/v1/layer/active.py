@@ -1,6 +1,6 @@
 # active layers
 import numpy as np
-from src.sdl_x import softmax
+from sdl_x import softmax
 
 from .old_layer import ICommonLayer
 

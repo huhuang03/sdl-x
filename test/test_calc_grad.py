@@ -1,7 +1,7 @@
 import numpy as np
 
-from src.sdl_x.variable import Variable
-from src.sdl_x.util_dot_graph import plot_dot_graph
+from sdl_x.variable import Variable
+from sdl_x.util_dot_graph import plot_dot_graph
 
 
 def test_calc_grad():
@@ -23,13 +23,13 @@ def test_grad_twice():
     x = Variable(np.array(2.0), name='x')
     y = f(x)
     y.name = 'y'
-    plot_dot_graph(y, to_file='tmp_0.png')
+    plot_dot_graph(y, to_file='../src/sdl_x/tmp_0.png')
     y.backward()
     assert np.allclose(x.grad.data, 24)
 
     y.grad.name = 'gy'
     x.grad.name = 'gx'
-    plot_dot_graph(x.grad, to_file='tmp_1.png')
+    plot_dot_graph(x.grad, to_file='../src/sdl_x/tmp_1.png')
 
     gx = x.grad
     x.clear_grad()
@@ -41,4 +41,4 @@ def test_grad_twice():
     # plt
     x.name = 'x'
     x.grad.name = "f''(x)"
-    plot_dot_graph(x.grad, to_file='tmp_2.png')
+    plot_dot_graph(x.grad, to_file='../src/sdl_x/tmp_2.png')

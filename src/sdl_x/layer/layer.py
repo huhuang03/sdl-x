@@ -1,4 +1,4 @@
-from src.sdl_x.parameter import Parameter
+from sdl_x.parameter import Parameter
 
 
 class Layer:

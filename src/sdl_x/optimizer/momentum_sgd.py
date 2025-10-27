@@ -1,4 +1,4 @@
-from src.sdl_x.optimizer.optimizer import Optimizer
+from sdl_x.optimizer.optimizer import Optimizer
 
 
 class MomentumSGD(Optimizer):

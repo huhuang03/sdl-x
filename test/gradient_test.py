@@ -4,7 +4,7 @@ from .util import assert_same
 import numpy
 import numpy as np
 
-from src.sdl_x import numerical_gradient
+from sdl_x import numerical_gradient
 
 
 def x2_plus_x2(x):

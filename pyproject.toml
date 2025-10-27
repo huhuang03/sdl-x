@@ -4,14 +4,10 @@ build-backend = 'hatchling.build'
 
 [project]
 name = 'sdl-x'
-version = '0.0.2'
+version = '0.1.0'
 description = 'a deep learning library for practice'
 authors = [{name = 'huhuang03'}]
 dependencies = ['numpy']
-
-[tool.hatch.envs.default]
-python = "3.12"
-path = '.venv'
 
 [project.dev-dependencies]
 pytest = '^7.0.0'
