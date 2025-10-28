@@ -1,8 +1,8 @@
 import numpy as np
 
 from .function import Function
-from sdl_x.util import as_array
 from .sum_and_brodcast_to import sum_to
+from ..variable import Variable
 
 
 class Add(Function):
@@ -11,9 +11,8 @@ class Add(Function):
         self.x0_shape = None
         self.x1_shape = None
 
-    def forward(self, x0: np.ndarray, x1: np.ndarray):
-        self.x0_shape, self.x1_shape = x0.shape, x1.shape
-        return x0 + x1
+    def forward(self, x: np.ndarray) -> np.ndarray:
+        return x[0] + x[1]
 
     def backward(self, gy):
         gx0, gx1 = gy, gy
@@ -24,4 +23,4 @@ class Add(Function):
 
 
 def add(x0, x1):
-    return Add()(x0, as_array(x1))
+    return Add()(Variable(np.array([x0, x1])))

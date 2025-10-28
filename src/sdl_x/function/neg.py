@@ -5,10 +5,10 @@ from ..variable import Variable
 
 
 class Neg(Function):
-    def forward(self, x: np.ndarray):
+    def forward(self, x: np.ndarray) -> np.ndarray:
         return -x
 
-    def backward(self, gy: np.ndarray):
+    def backward(self, gy: np.ndarray) -> np.ndarray:
         return gy * -1
 
 
